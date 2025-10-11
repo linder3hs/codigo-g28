@@ -1,0 +1,28 @@
+body {
+  background-color: #38f29b;
+}
+
+/* SELECTORES */
+/*
+Es la forma en la que buscamos elementos de HTML
+
+selector por nombre
+body {
+}
+
+selector por id
+#image-profile {
+}
+
+selector por class
+.list {
+}
+*/
+#image-profile {
+  border-radius: 50%;
+}
+
+.img-square {
+  width: 200px;
+  height: 200px;
+}
