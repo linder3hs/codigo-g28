@@ -1,0 +1,34 @@
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+main {
+  height: 100vh;
+  background-image: url("./images/bg-intro-desktop.png");
+  background-color: hsl(0, 100%, 74%);
+  /* centrar el contenido vertical y horizontal */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+section:first-child {
+  color: #fff;
+}
+
+section:first-child > h1 {
+  font-size: 42px;
+  width: 20ch;
+}
+
+section:first-child > p {
+  width: 50ch;
+  margin-top: 30px;
+}
