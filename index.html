@@ -1,76 +1,87 @@
-<!-- ORDEN -->
 <!DOCTYPE html>
-<!-- ETIQUETA HTML CONTENEDORA -->
-<html>
+<html lang="en">
   <head>
-    <!-- El title es el texto que aparece en la pestaña -->
-    <title>Codigo-G28</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
   </head>
-
-  <style>
-    body > * {
-      border: solid 3px green;
-    }
-  </style>
-
   <body>
-    <!-- TITULOS -->
-    <h1>Codigo G28 - Frontend</h1>
-    <h2>Titulo 2</h2>
-    <h3>Titulo 3</h3>
-    <h4>Titulo 4</h4>
-    <h5>Titulo 5</h5>
-    <h6>Titulo 6</h6>
-    <!-- PARRAFOS -->
-    <p>Es la etiqueta para contener parrafos.</p>
-    <!-- IMAGES -->
-    <img
-      src="https://codigo.edu.pe/wp-content/uploads/2023/06/637513271472380d248ff3db_DESARROLLO-DE-VIDEOJUEGOS-p-1600.jpg"
-      alt="Imagen del curso de codigo"
-      width="500"
-      height="400"
-    />
-
-    <img
-      src="./codigo-tecsup.jpg"
-      width="500"
-      height="300"
-      alt="Charla de codigo tecsup"
-    />
-
-    <!-- ETIQUETA ANCHOR -->
-    <!-- target="_blank" abre el enlace en otra pestaña -->
-    <a href="https://youtu.be/wIsJNkkDKts?si=EPjXQbeKp-Zi1U_P" target="_blank">
-      Vide sobre AI
-    </a>
-    <!-- LISTAS -->
-    <!-- LISTA ORDENADA -->
-    <ol>
-      <li>Casa</li>
-      <li>Perro</li>
-      <li>Celular</li>
-    </ol>
-    <!-- LISTA NO ORDENA -->
-    <ul>
-      <li>Fresa</li>
-      <li>Pera</li>
-      <li>Manzana</li>
-    </ul>
-    <div>
-      <img
-        src="https://codigo.edu.pe/wp-content/uploads/2023/06/637513271472380d248ff3db_DESARROLLO-DE-VIDEOJUEGOS-p-1600.jpg"
-        alt="Imagen del curso de codigo"
-        width="500"
-        height="400"
-      />
-
-      <img
-        src="./codigo-tecsup.jpg"
-        width="500"
-        height="300"
-        alt="Charla de codigo tecsup"
-      />
-    </div>
-    <p>Hola mundo</p>
+    <!-- Menu de navegación header -->
+    <header>
+      <!-- navegacion -->
+      <nav class="menu">
+        <!-- Logo - enlace -->
+        <div>
+          <img src="./logo.svg" alt="Logo de portafolio" />
+        </div>
+        <ul>
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="#">About me</a>
+          </li>
+          <li>
+            <a href="#">Services</a>
+          </li>
+          <li>
+            <a href="#">Projects</a>
+          </li>
+          <li>
+            <a href="#">Testimonials</a>
+          </li>
+          <li>
+            <a href="#">Contact</a>
+          </li>
+        </ul>
+        <!-- Listado de items (home, about) -->
+      </nav>
+    </header>
+    <!-- La seccion principal -->
+    <main>
+      <section>
+        <p class="gretting">Hi I am</p>
+        <p class="full-name">Linder Hassinger</p>
+        <h1 class="title">Senior Software Developer</h1>
+        <p class="description">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat porro
+          tempore, hic ipsum dignissimos inventore iusto similique fugiat vel
+          maiores. Eos dignissimos placeat incidunt obcaecati nesciunt unde
+          iusto commodi fuga?
+        </p>
+        <button class="btn-primary">Hire me</button>
+      </section>
+      <section>
+        <div class="profile">
+          <img
+            src="./1589915156147.jpeg"
+            alt="Foto de Perfil Linder Hassinger"
+          />
+        </div>
+        <div class="social-media">
+          <a href="#">
+            <img src="./facebook.svg" alt="" width="32" />
+          </a>
+          <a href="#">
+            <img src="./twitter.svg" alt="" width="32" />
+          </a>
+          <a href="#">
+            <img src="./instagram.svg" alt="" width="32" />
+          </a>
+          <a href="#">
+            <img src="./linkedin.svg" alt="" width="32" />
+          </a>
+        </div>
+      </section>
+    </main>
+    <!-- Pie de pagina (footer) -->
+    <footer></footer>
   </body>
 </html>

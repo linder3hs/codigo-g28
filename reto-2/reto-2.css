@@ -77,3 +77,7 @@ input {
   border-radius: 6px;
   border: solid 1px hsl(249, 10%, 26%);
 }
+
+section:last-child > form > p {
+  border: red solid;
+}
