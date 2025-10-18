@@ -54,11 +54,19 @@ main {
 
 .container {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   padding: 32px;
   justify-content: center;
   align-items: center;
   gap: 25px;
+}
+
+.container-reverse {
+  flex-direction: column-reverse;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .profile {
@@ -83,6 +91,7 @@ main {
   display: flex;
   gap: 15px;
   justify-content: center;
+  width: 250px;
 }
 
 .gretting {
@@ -160,6 +169,11 @@ en base a una medida */
     gap: 40px;
   }
 
+  main {
+    max-width: 1400px;
+    margin: auto;
+  }
+
   .container {
     /* cambiar la orientación a horizontal */
     flex-direction: row;
@@ -171,17 +185,17 @@ en base a una medida */
     | 1        2        3 |
     |---------------------|
     */
-    justify-content: space-between;
+    /* justify-content: space-between; */
     /* Definir el ancho maximo de un elemento
     60% de la pantalla
     Ejemplo:
     monitor: 1000px
     max-width: 600px
      */
-    max-width: 60%;
+    /* max-width: 60%; */
     /* el margin auto sirve para poder centrar el contenido horizontal
     solomanete si hemos manipulado el ancho del element */
-    margin: auto;
+    /* margin: auto; */
   }
 
   .container > section:first-child {
