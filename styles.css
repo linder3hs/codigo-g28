@@ -161,12 +161,40 @@ en base a una medida */
   }
 
   .container {
+    /* cambiar la orientación a horizontal */
     flex-direction: row;
+    /*
+    propiedad: justify-content: manipula los elementos en el eje x (horizontal)
+    valor: space-between: acomoda los elementos de extremo a extremo
+    |---------------------|
+    | 1                 2 |
+    | 1        2        3 |
+    |---------------------|
+    */
+    justify-content: space-between;
+    /* Definir el ancho maximo de un elemento
+    60% de la pantalla
+    Ejemplo:
+    monitor: 1000px
+    max-width: 600px
+     */
+    max-width: 60%;
+    /* el margin auto sirve para poder centrar el contenido horizontal
+    solomanete si hemos manipulado el ancho del element */
+    margin: auto;
+  }
+
+  .container > section:first-child {
+    flex-grow: 1;
+  }
+
+  .container > section:last-child {
+    flex-grow: 1;
   }
 
   .title {
-    font-size: 72px;
-    width: 20ch;
+    font-size: 62px;
+    width: 13ch;
   }
 
   .description {
