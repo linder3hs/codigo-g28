@@ -152,6 +152,49 @@ main {
   border-radius: 6px;
 }
 
+.grid-projects {
+  display: grid;
+  gap: 50px;
+}
+
+.card {
+  color: #fff;
+}
+
+.card-images {
+  background-color: #ffebdb;
+  border-radius: 6px;
+  position: relative;
+  width: 445px;
+  height: 489px;
+  text-align: right;
+}
+
+.card-images > div > img {
+  width: 274px;
+}
+
+.card-images > div > img:first-child {
+  position: absolute;
+  bottom: -3px;
+  right: 115px;
+}
+
+.card-images > div > img:last-child {
+  padding-right: 40px;
+  height: 489px;
+  object-fit: cover;
+}
+
+.card-body {
+  margin-top: 30px;
+}
+
+.card-body > p {
+  color: #fd6f00;
+  margin-bottom: 15px;
+}
+
 /* Crear una condicion para aplicar estilos en desktop */
 /* @media son funciones de CSS que permiten modificar los estilos
 en base a una medida */
@@ -214,5 +257,10 @@ en base a una medida */
   .description {
     width: 50ch;
     margin-top: 30px;
+  }
+
+  .grid-projects {
+    /* 3 elementos filas */
+    grid-template-columns: repeat(3, 1fr);
   }
 }
