@@ -7,7 +7,7 @@
 
 body {
   font-size: 15px;
-  font-family: "Josefin Sans", sans-serif;
+  font-family: "alata", sans-serif;
 }
 
 header {
@@ -31,11 +31,52 @@ header > div {
   flex-grow: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
+  padding: 30px;
+}
+
+header > div > div {
+  border: solid;
+  width: 100%;
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 300;
 }
 
 h1 {
-  font-size: 65px;
+  font-size: 55px;
   width: 10ch;
-  font-weight: 300;
+  padding: 20px;
+}
+
+.container {
+  margin: auto;
+  padding: 30px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.container-intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.container-intro > p {
+  color: #c9c9c9;
+  line-height: 2;
+  width: 30ch;
+}
+
+.text-2xl {
+  font-size: 42px;
 }
