@@ -80,3 +80,57 @@ h1 {
 .text-2xl {
   font-size: 42px;
 }
+
+.container-creations {
+  margin-top: 50px;
+  display: grid;
+  gap: 30px;
+}
+
+.container-creations > div > h4 {
+  font-size: 28px;
+  width: 9ch;
+  text-align: left;
+}
+
+.creation {
+  padding: 20px;
+  height: 150px;
+  color: #fff;
+  display: flex;
+  align-items: end;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.creation-1 {
+  background-image: url(./images/mobile/image-deep-earth.jpg);
+}
+
+.creation-2 {
+  background-image: url(./images/mobile/image-night-arcade.jpg);
+}
+
+.creation-3 {
+  background-image: url(./images/mobile/image-soccer-team.jpg);
+}
+
+.creation-4 {
+  background-image: url(./images/mobile/image-grid.jpg);
+}
+
+.creation-5 {
+  background-image: url(./images/mobile/image-from-above.jpg);
+}
+
+.creation-6 {
+  background-image: url(./images/mobile/image-pocket-borealis.jpg);
+}
+
+.creation-7 {
+  background-image: url(./images/mobile/image-curiosity.jpg);
+}
+
+.creation-8 {
+  background-image: url(./images/mobile/image-fisheye.jpg);
+}
