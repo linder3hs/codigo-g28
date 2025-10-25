@@ -27,6 +27,35 @@ header > nav {
   padding: 30px;
 }
 
+.menu-burguer {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-float {
+  background-color: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: none;
+}
+
+.menu-float-header {
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-float-header > button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
 header > div {
   flex-grow: 1;
   display: flex;

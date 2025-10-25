@@ -21,7 +21,19 @@
         </div>
         <!-- Menu -->
         <div>
-          <img src="./images/icon-hamburger.svg" alt="" />
+          <button id="btn-menu-burguer" class="menu-burguer">
+            <img src="./images/icon-hamburger.svg" alt="" />
+          </button>
+        </div>
+        <!-- Lista -->
+        <div class="menu-float">
+          <div class="menu-float-header">
+            <img src="./images/logo.svg" alt="" />
+            <button id="btn-menu-close">
+              <img src="./images/icon-close.svg" />
+            </button>
+          </div>
+          <div></div>
         </div>
       </nav>
       <div>
@@ -121,5 +133,22 @@
         <p>© 2025 Loopstudios. All rights reserved</p>
       </div>
     </footer>
+    <script>
+      // Abrir el menu
+      document
+        .querySelector("#btn-menu-burguer")
+        .addEventListener("click", function () {
+          document.querySelector(".menu-float").style.display = "block";
+          document.body.style.overflow = "hidden";
+        });
+
+      // Cerrar el menu
+      document
+        .querySelector("#btn-menu-close")
+        .addEventListener("click", function () {
+          document.querySelector(".menu-float").style.display = "none";
+          document.body.style.overflow = "auto";
+        });
+    </script>
   </body>
 </html>
