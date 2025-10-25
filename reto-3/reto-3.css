@@ -27,6 +27,10 @@ header > nav {
   padding: 30px;
 }
 
+.menu {
+  display: none;
+}
+
 .menu-burguer {
   background-color: transparent;
   border: none;
@@ -217,4 +221,36 @@ footer {
 
 .footer-text {
   text-align: center;
+}
+
+/* Desktop */
+@media (min-width: 1025px) {
+  header {
+    background-image: url(./images/desktop/image-hero.jpg);
+  }
+
+  .container-width {
+    width: 1440px;
+    margin: auto;
+  }
+
+  .menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+  }
+
+  .container-btn-burguer {
+    display: none;
+  }
+
+  header > div > div {
+    width: 40%;
+  }
+
+  h1 {
+    font-size: 62px;
+    padding: 20px;
+    width: 15ch;
+  }
 }
