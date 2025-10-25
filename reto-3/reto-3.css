@@ -45,7 +45,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+button {
   font-family: "Josefin Sans", sans-serif;
   font-weight: 300;
 }
@@ -133,4 +134,58 @@ h1 {
 
 .creation-8 {
   background-image: url(./images/mobile/image-fisheye.jpg);
+}
+
+.container-button {
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.container-button > button {
+  background-color: transparent;
+  padding: 15px 50px;
+  font-size: 18px;
+  border: 1px solid;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+footer {
+  background-color: #000;
+  display: flex;
+  gap: 40px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 20px;
+  color: #fff;
+}
+
+.menu-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.menu-footer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  text-align: center;
+}
+
+.footer-social-media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-text {
+  text-align: center;
 }
