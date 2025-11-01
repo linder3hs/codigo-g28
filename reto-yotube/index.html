@@ -15,14 +15,28 @@
       }
     </style>
   </head>
-  <body class="bg-black text-white p-3">
-    <header class="flex items-center justify-between">
-      <img src="./assets/yt-logo.svg" alt="" />
-      <div class="flex gap-5">
-        <button>
-          <img src="./assets/search.svg" alt="" />
-        </button>
-        <img src="./assets/avatar.svg" alt="" />
+  <body class="bg-black text-white p-3 lg:p-10">
+    <header
+      class="flex lg:gap-20 items-center justify-between lg:justify-start"
+    >
+      <div class="flex items-center gap-4">
+        <img class="hidden lg:block" src="./assets/menu.svg" alt="" />
+        <img src="./assets/yt-logo.svg" alt="" />
+      </div>
+      <div class="lg:flex lg:flex-1 lg:justify-between">
+        <div class="hidden lg:block">
+          <input
+            type="text"
+            class="bg-dark p-3 border border-white w-[416px] rounded-md outline-none"
+            placeholder="Search..."
+          />
+        </div>
+        <div class="flex gap-5">
+          <button>
+            <img src="./assets/search.svg" alt="" />
+          </button>
+          <img src="./assets/avatar.svg" alt="" />
+        </div>
       </div>
     </header>
     <main class="mt-10 space-y-10">
