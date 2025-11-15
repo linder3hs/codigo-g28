@@ -34,3 +34,15 @@ function decrementar(element) {
     contador.textContent = valorActual - 1;
   }
 }
+
+// Los formulario tiene el evento submit
+// buscar al formulario
+const formulario = document.querySelector("form");
+// vamos a escuchar el evento submit (exclusivo de los formularios)
+formulario.addEventListener("submit", function (event) {
+  // los formulario tienen un comportamiento
+  // el comportamiento por defecto debe evitarse
+  // el event que es un parametro (evento) preventDefault()
+  event.preventDefault();
+  console.log("Formulario");
+});
