@@ -23,6 +23,10 @@ tituloPrincipal.classList.add("css-titulo-principal");
 
 // nombre de etiqueta
 const parrafo = document.querySelector("p");
+parrafo.addEventListener("click", function () {
+  alert("Click en cualquier elemento");
+});
+
 const parrafos = document.querySelectorAll("p");
 console.log(parrafo);
 console.log(parrafos);
@@ -30,12 +34,29 @@ console.log(parrafos);
 const btnOne = document.querySelector(".btn-one");
 console.log(btnOne);
 
+// como podemos capturar el click de un boton y hacer una accion
+/**
+ * addEventListener
+ * parametro1: evento "click"
+ * parametro2: function (la funcion no tiene nombre - funcion anonima)
+ */
+btnOne.addEventListener("click", function () {
+  const segundoParrafo = document.querySelector("#segundo-parrafo");
+  segundoParrafo.textContent = "Este es un parrafo, que se modifico desde JS";
+});
+
+// DATOS EXTRA MUY IMPORTANTE
+// TODOS los elementos tienen el atributo click
+
 const contenedor = document.querySelector("#contenedor");
 
 contenedor.innerHTML = `
-<h2>Titulo de JS</h2>
+<h2 id="titulo-2">Titulo de JS</h2>
 <img width="200" src="https://yt3.googleusercontent.com/MqAUGsICRxKJmJAYlrqUnqKLGlQ5hzaiBJKbaqLSLIcGYh9fwf6kcU4i3BgmWG5o-y7W9j1Bx3Q=s900-c-k-c0x00ffffff-no-rj" />
 <div>
   <p>Hola mundo</p>
 </div>
 `;
+// es posible manipular las etiquetas creadas usando el innetHTML
+// const titulo2 = document.querySelector("#titulo-2");
+// titulo2.classList.add("css-titulo-principal");
