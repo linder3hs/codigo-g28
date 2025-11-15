@@ -25,3 +25,12 @@ function incrementar(element) {
   // pero al colocarle es "=" (operador de asignacion)
   contador.textContent = Number(contador.textContent) + 1;
 }
+
+function decrementar(element) {
+  const contador = element.closest("div").querySelector("span");
+  const valorActual = Number(contador.textContent);
+
+  if (valorActual > 0) {
+    contador.textContent = valorActual - 1;
+  }
+}
