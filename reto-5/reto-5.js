@@ -11,15 +11,23 @@ const main = document.querySelector("main");
 // cada iteracion agregar(adicionar) un card a main
 function renderComments() {
   // TRUCO: Antes de hacer el for limpiamos el main
-  main.innerHTML = ""
+  main.innerHTML = "";
   for (let comentario of comentarios) {
     main.innerHTML += `
-    <div class="bg-white p-4 rounded-lg space-y-5">
+    <div id="card-${comentario.id}" class="bg-white p-4 rounded-lg space-y-5">
         <!-- CABECERA -->
-        <div class="flex items-center gap-7">
-          <img width="40" src="${comentario.avatar}" alt="" />
-          <p class="font-semibold text-sm">${comentario.username}</p>
-          <p class="text-sm text-gray-500">${comentario.commentDate}</p>
+        <div class="flex justify-between items-center">
+          <div class="flex items-center gap-7">
+            <img width="40" src="${comentario.avatar}" alt="" />
+            <p class="font-semibold text-sm">${comentario.username}</p>
+            <p class="text-sm text-gray-500">${comentario.commentDate}</p>
+          </div>
+          <div>
+            <!-- BOTON ELIMINAR -->
+            <button onclick="eliminarComentario(${comentario.id})" class="cursor-pointer">
+              <img src="./images/icon-delete.svg" alt="" />
+            </button>
+          </div>
         </div>
         <!-- COMENTARIO -->
         <p class="text-gray-500">
@@ -46,12 +54,17 @@ function renderComments() {
             Reply
           </button>
         </div>
-      </div>`
+      </div>`;
   }
 }
 
 // Ejecutar la funcion al iniciar la aplicacion
 renderComments();
+
+// Function para eliminar un comentario
+function eliminarComentario(id) {
+  alert(id);
+}
 
 // palabra reservada para hacer referencia a un elemento
 function incrementar(element) {
@@ -70,15 +83,13 @@ function incrementar(element) {
    * element.closest("div").querySelector
    * buscamos en el div encontrado la etiqueta span
    * element.closest("div").querySelector("span")
-   */;
-
-  // la etiqueta span
+   */ // la etiqueta span
   const contador = element.closest("div").querySelector("span");
   // vamos a modificar su valor
   // contador.textContext = ""
   // el valor actual: contador.textContent
   // pero al colocarle es "=" (operador de asignacion)
-  contador.textContent = Number(contador.textContent) + 1
+  contador.textContent = Number(contador.textContent) + 1;
 }
 
 function decrementar(element) {
@@ -93,14 +104,15 @@ function decrementar(element) {
 // Funcion que se encargue de generar el HTML para el card
 function createCommentCard(comentario) {
   const objetoComentario = {
+    id: comentarios.length + 1,
     username: "linder3hs",
     commentDate: new Date().toDateString(),
     avatar: "./images/avatars/image-juliusomo.png",
     comment: comentario,
-    upvotes: 0
-  }
+    upvotes: 0,
+  };
   comentarios.push(objetoComentario);
-  renderComments()
+  renderComments();
 }
 
 // vamos a escuchar el evento del teclado
