@@ -87,6 +87,15 @@ formularioComentario.addEventListener("submit", function (event) {
   // podemos buscar los valores de los inputs usando el name
   // queremos buscar la data del textarea que tiene el name "comment"
   const comentario = formData.get("comment")
+  // Antes de ejecutar la funcion que crea el card haremos algunas validaciones
+  if (comentario.trim() === "") {
+    const commentBox = document.querySelector("textarea")
+    const errorText = document.querySelector("#error-text")
+    commentBox.classList.add("border-red-500")
+    errorText.classList.remove("hidden")
+    // Este return es para que no se ejecute la siguiente linea
+    return
+  }
   // Luego de obtener el comentario del formulario vamos a llamar a la funcion
   // que se encarga de generar el HTML para el card
   createCommentCard(comentario)
