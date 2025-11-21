@@ -35,14 +35,61 @@ function decrementar(element) {
   }
 }
 
+// Funcion que se encargue de generar el HTML para el card
+function createCommentCard(comentario) {
+  // buscamos el main por nombre de etiqueta
+  const main = document.querySelector("main");
+  main.innerHTML += `<div class="bg-white p-4 rounded-lg space-y-5">
+      <!-- CABECERA -->
+      <div class="flex items-center gap-7">
+        <img width="40" src="./images/avatars/image-juliusomo.png" alt="" />
+        <p class="font-semibold text-sm">linder3hs</p>
+        <p class="text-sm text-gray-500">${new Date().toDateString()}</p>
+      </div>
+      <!-- COMENTARIO -->
+      <p class="text-gray-500">
+        ${comentario}
+      </p>
+      <div class="flex justify-between">
+        <div class="flex items-center gap-4 bg-gray-100 px-4 py-2 rounded-lg">
+          <button onclick="incrementar(this)" class="text-purple-400 font-semibold cursor-pointer">
+            +
+          </button>
+          <span class="text-purple-500 font-semibold">0</span>
+          <button onclick="decrementar(this)" class="text-purple-400 font-semibold cursor-pointer">
+            -
+          </button>
+        </div>
+        <button class="flex items-center gap-2 text-purple-500 font-semibold">
+          <img src="./images/icon-reply.svg" alt="" />
+          Reply
+        </button>
+      </div>
+    </div>`
+
+}
+
+
 // Los formulario tiene el evento submit
 // buscar al formulario
-const formulario = document.querySelector("form");
+const formularioComentario = document.querySelector("form");
 // vamos a escuchar el evento submit (exclusivo de los formularios)
-formulario.addEventListener("submit", function (event) {
+formularioComentario.addEventListener("submit", function (event) {
   // los formulario tienen un comportamiento
   // el comportamiento por defecto debe evitarse
   // el event que es un parametro (evento) preventDefault()
   event.preventDefault();
-  console.log("Formulario");
+  // La forma en la que vamos a obtener la data del Formulario es usando la clase FormData
+  // FormData(): Es una clase de JS que nos permite poder obtener la data de un formulario
+  // cuando queremos invocar a una clase usamos la palabra reservada `new`
+  // new en programacion se lo conoce como instanciar una clase
+  const formData = new FormData(formularioComentario)
+  // podemos buscar los valores de los inputs usando el name
+  // queremos buscar la data del textarea que tiene el name "comment"
+  const comentario = formData.get("comment")
+  // Luego de obtener el comentario del formulario vamos a llamar a la funcion
+  // que se encarga de generar el HTML para el card
+  createCommentCard(comentario)
+  // Limpiar el formulario
+  formularioComentario.reset()
 });
