@@ -1,3 +1,11 @@
+// Separar las variables de las funciones
+
+// Los formulario tiene el evento submit
+// buscar al formulario
+const formularioComentario = document.querySelector("form");
+const commentBox = document.querySelector("textarea")
+const errorText = document.querySelector("#error-text")
+
 // palabra reservada para hacer referencia a un elemento
 function incrementar(element) {
   // paso 1: retrocemos a buscar al elemento padre usando closest
@@ -69,10 +77,20 @@ function createCommentCard(comentario) {
 
 }
 
+// vamos a escuchar el evento del teclado
+// input: es un evento que se dispara cada vez que el usuario escribe
+commentBox.addEventListener("input", function (event) {
+  // event.target.value: es el texto que estamos escribiendo dentro
+  // del textarea
+  if (event.target.value.trim() !== "") {
+    errorText.classList.add("hidden")
+    commentBox.classList.remove("border-red-500")
+  } else {
+    commentBox.classList.add("border-red-500")
+    errorText.classList.remove("hidden")
+  }
+})
 
-// Los formulario tiene el evento submit
-// buscar al formulario
-const formularioComentario = document.querySelector("form");
 // vamos a escuchar el evento submit (exclusivo de los formularios)
 formularioComentario.addEventListener("submit", function (event) {
   // los formulario tienen un comportamiento
@@ -89,8 +107,6 @@ formularioComentario.addEventListener("submit", function (event) {
   const comentario = formData.get("comment")
   // Antes de ejecutar la funcion que crea el card haremos algunas validaciones
   if (comentario.trim() === "") {
-    const commentBox = document.querySelector("textarea")
-    const errorText = document.querySelector("#error-text")
     commentBox.classList.add("border-red-500")
     errorText.classList.remove("hidden")
     // Este return es para que no se ejecute la siguiente linea
