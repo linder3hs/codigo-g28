@@ -63,7 +63,13 @@ renderComments();
 
 // Function para eliminar un comentario
 function eliminarComentario(id) {
-  alert(id);
+  // Eliminar el elemento HTML
+  const commentCard = document.querySelector(`#card-${id}`);
+  commentCard.remove();
+  // Eliminar el elemento del arreglo
+  comentarios = comentarios.filter(function (comentario) {
+    return comentario.id !== id;
+  });
 }
 
 // palabra reservada para hacer referencia a un elemento

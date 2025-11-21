@@ -1,4 +1,4 @@
-const comentarios = [
+let comentarios = [
   {
     id: 1,
     username: "elvis",
@@ -13,7 +13,7 @@ const comentarios = [
     },
     decrementar: function () {
       this.upvotes--;
-    }
+    },
   },
   {
     id: 2,
@@ -28,7 +28,6 @@ const comentarios = [
     },
     decrementar: function () {
       this.upvotes--;
-    }
+    },
   },
 ];
-
