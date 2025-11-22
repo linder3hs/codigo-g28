@@ -6,9 +6,26 @@
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
-  <body>
+  <body class="bg-[#03012d] text-white">
     <main>
-      <section>Weather App</section>
+      <section class="p-10 space-y-14">
+        <h1 class="text-6xl font-semibold text-center">
+          How's the sky looking today?
+        </h1>
+        <form class="space-y-5">
+          <input
+            type="text"
+            class="bg-[#3d3b5e] w-full px-4 py-3 rounded-lg outline-none"
+            placeholder="Search for a place"
+          />
+          <button
+            type="submit"
+            class="w-full cursor-pointer bg-[#4455da] px-4 py-3 rounded-lg text-lg font-semibold"
+          >
+            Search
+          </button>
+        </form>
+      </section>
     </main>
     <script src="./reto-6.js"></script>
   </body>
