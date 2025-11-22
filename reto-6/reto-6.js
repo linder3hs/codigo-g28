@@ -23,14 +23,18 @@ async function getCoordinatesFromPlace(place) {
     `https://geocoding-api.open-meteo.com/v1/search?name=${place}&count=1&language=es&format=json`
   );
   const data = await response.json();
-  console.log(data);
+
+  if (data.results) {
+    const latitude = data.results[0].latitude;
+    const longitude = data.results[0].longitude;
+    await getWeather(latitude, longitude);
+  } else {
+    alert("El lugar buscado, no existe.");
+  }
 }
 
 // async define que la funcion que vamos a crear es asincrona
-async function getWeather() {
-  // Esto es latitude y longitude de Lima que usaremos para el ejemplo
-  const lat = -12.04318; // Lima
-  const lon = -77.02824;
+async function getWeather(lat, lon) {
   // Existe una funcion llamada fetch
   //  nota: await y fetch siempre van juntos
   const response = await fetch(
@@ -39,5 +43,3 @@ async function getWeather() {
   const data = await response.json();
   console.log(data);
 }
-
-getWeather();
