@@ -7,6 +7,15 @@
  *
  * IMPORTANTE: Cuando usemos una API EndPoint, debemos recordar que es async (Asincrono)
  */
+const form = document.querySelector("form");
+
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const formData = new FormData(form);
+  const place = formData.get("place");
+  console.log(place);
+});
 
 // async define que la funcion que vamos a crear es asincrona
 async function getWeather() {
