@@ -8,6 +8,39 @@
  * IMPORTANTE: Cuando usemos una API EndPoint, debemos recordar que es async (Asincrono)
  */
 const form = document.querySelector("form");
+const weatherMain = document.querySelector("#weather-main");
+const weatherDetail = document.querySelector("#weather-detail");
+
+const codigos = {
+  0: { descripcion: "Despejado", icono: "☀️" },
+  1: { descripcion: "Mayormente despejado", icono: "🌤️" },
+  2: { descripcion: "Parcialmente nublado", icono: "⛅" },
+  3: { descripcion: "Nublado", icono: "☁️" },
+  45: { descripcion: "Neblina", icono: "🌫️" },
+  48: { descripcion: "Niebla con escarcha", icono: "🌫️" },
+  51: { descripcion: "Llovizna ligera", icono: "🌦️" },
+  53: { descripcion: "Llovizna moderada", icono: "🌦️" },
+  55: { descripcion: "Llovizna densa", icono: "🌧️" },
+  56: { descripcion: "Llovizna helada ligera", icono: "🌧️" },
+  57: { descripcion: "Llovizna helada densa", icono: "🌧️" },
+  61: { descripcion: "Lluvia ligera", icono: "🌧️" },
+  63: { descripcion: "Lluvia moderada", icono: "🌧️" },
+  65: { descripcion: "Lluvia intensa", icono: "⛈️" },
+  66: { descripcion: "Lluvia helada ligera", icono: "🌧️" },
+  67: { descripcion: "Lluvia helada intensa", icono: "🌧️" },
+  71: { descripcion: "Nieve ligera", icono: "🌨️" },
+  73: { descripcion: "Nieve moderada", icono: "❄️" },
+  75: { descripcion: "Nieve intensa", icono: "❄️" },
+  77: { descripcion: "Granizo", icono: "🌨️" },
+  80: { descripcion: "Chubascos ligeros", icono: "🌦️" },
+  81: { descripcion: "Chubascos moderados", icono: "🌧️" },
+  82: { descripcion: "Chubascos violentos", icono: "⛈️" },
+  85: { descripcion: "Nevadas ligeras", icono: "🌨️" },
+  86: { descripcion: "Nevadas intensas", icono: "❄️" },
+  95: { descripcion: "Tormenta", icono: "⛈️" },
+  96: { descripcion: "Tormenta con granizo ligero", icono: "⛈️" },
+  99: { descripcion: "Tormenta con granizo intenso", icono: "⛈️" },
+};
 
 form.addEventListener("submit", async function (event) {
   event.preventDefault();
@@ -27,14 +60,15 @@ async function getCoordinatesFromPlace(place) {
   if (data.results) {
     const latitude = data.results[0].latitude;
     const longitude = data.results[0].longitude;
-    await getWeather(latitude, longitude);
+    const name = `${data.results[0].name}, ${data.results[0].country}`;
+    await getWeather(latitude, longitude, name);
   } else {
     alert("El lugar buscado, no existe.");
   }
 }
 
 // async define que la funcion que vamos a crear es asincrona
-async function getWeather(lat, lon) {
+async function getWeather(lat, lon, name) {
   // Existe una funcion llamada fetch
   //  nota: await y fetch siempre van juntos
   const response = await fetch(
@@ -42,4 +76,21 @@ async function getWeather(lat, lon) {
   );
   const data = await response.json();
   console.log(data);
+  renderWeather(data, name);
+}
+
+function renderWeather(data, name) {
+  weatherMain.classList.remove("hidden");
+  weatherMain.innerHTML = `
+        <div class="text-center space-y-5">
+          <h3 class="text-3xl font-semibold">${name}</h3>
+          <p>${new Date(data.current.time).toDateString()}</p>
+          <div class="flex justify-center items-center gap-8">
+            <span class="text-5xl">${
+              codigos[data.current.weather_code].icono
+            }</span>
+            <span class="text-8xl">${data.current.temperature_2m}°</span>
+          </div>
+        </div>
+    `;
 }
