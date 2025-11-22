@@ -9,13 +9,22 @@
  */
 const form = document.querySelector("form");
 
-form.addEventListener("submit", function (event) {
+form.addEventListener("submit", async function (event) {
   event.preventDefault();
 
   const formData = new FormData(form);
   const place = formData.get("place");
-  console.log(place);
+  await getCoordinatesFromPlace(place);
+  form.reset();
 });
+
+async function getCoordinatesFromPlace(place) {
+  const response = await fetch(
+    `https://geocoding-api.open-meteo.com/v1/search?name=${place}&count=1&language=es&format=json`
+  );
+  const data = await response.json();
+  console.log(data);
+}
 
 // async define que la funcion que vamos a crear es asincrona
 async function getWeather() {
