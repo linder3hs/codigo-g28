@@ -93,4 +93,32 @@ function renderWeather(data, name) {
           </div>
         </div>
     `;
+
+  const details = [
+    {
+      name: "Feels Like",
+      value: `${data.current.apparent_temperature}°`,
+    },
+    {
+      name: "Humidity",
+      value: `${data.current.relative_humidity_2m}%`,
+    },
+    {
+      name: "Wind",
+      value: `${data.current.wind_speed_10m} mph`,
+    },
+    {
+      name: "Precipitation",
+      value: `${data.current.precipitation} in`,
+    },
+  ];
+
+  weatherDetail.innerHTML = "";
+  for (let detail of details) {
+    weatherDetail.innerHTML += `
+        <div class="bg-[#3d3b5e] p-4 space-y-5 rounded-lg">
+          <h6>${detail.name}</h6>
+          <p class="text-4xl">${detail.value}</p>
+        </div>`;
+  }
 }
