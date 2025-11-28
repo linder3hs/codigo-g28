@@ -1,5 +1,6 @@
 // Vamos a importa el componente Header
 import Header from "./components/Header";
+import Title from "./components/Title";
 
 /**
  * Como crear un componente desde 0
@@ -13,13 +14,10 @@ function App() {
   return (
     <section>
       <Header />
-      <h1>Hola mundo desde React</h1>
       <div>
-        <section>
-          <nav></nav>
-        </section>
+        <Title text="Hola mundo" size="h1" />
+        <Title text="Me llamo Linder" />
       </div>
-      <section></section>
     </section>
   );
 }
