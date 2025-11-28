@@ -1,6 +1,7 @@
 // Vamos a importa el componente Header
 import Header from "./components/Header";
 import Title from "./components/Title";
+import Button from "./components/Button";
 
 /**
  * Como crear un componente desde 0
@@ -12,7 +13,7 @@ import Title from "./components/Title";
 function App() {
   // retorna un bloque de HTML
   return (
-    <section>
+    <section className="m-5">
       <Header />
       <div>
         <Title text="Hola mundo" size="h1" />
@@ -21,6 +22,13 @@ function App() {
         <Title text="Me llamo Linder" size="h4" />
         <Title text="Me llamo Linder" size="h3" />
         <Title text="Me llamo Linder" size="h2" />
+        <div className="flex gap-10 flex-col">
+          <Button type="button" variant="primary" text="Boton primario" />
+          <Button type="submit" variant="danger" text="Boton de peligro" />
+          <Button type="reset" variant="warning" text="Boton de advertencia" />
+          <Button variant="info" text="Boton informativo" />
+          <Button text="Prueba" variant="danger" type="submit" />
+        </div>
       </div>
     </section>
   );
