@@ -16,7 +16,11 @@ function App() {
       <Header />
       <div>
         <Title text="Hola mundo" size="h1" />
-        <Title text="Me llamo Linder" />
+        <Title text="Me llamo Linder" size="h6" />
+        <Title text="Me llamo Linder" size="h5" />
+        <Title text="Me llamo Linder" size="h4" />
+        <Title text="Me llamo Linder" size="h3" />
+        <Title text="Me llamo Linder" size="h2" />
       </div>
     </section>
   );
