@@ -18,7 +18,8 @@ function App() {
   const handleFormSubmit = (event) => {
     // evitar que se recargue la pagina
     event.preventDefault();
-    console.log(taskName);
+    setTasks([...tasks, taskName]);
+    setTaskName("");
   };
 
   return (
@@ -41,6 +42,21 @@ function App() {
           </button>
         </div>
       </form>
+      <div className="space-y-5">
+        {tasks.map((task, index) => (
+          <div key={index} className="bg-white px-3 py-5 rounded-md">
+            <p className="font-semibold capitalize">{task}</p>
+            <div className="flex gap-5 mt-3">
+              <button className="border border-gray-300 cursor-pointer rounded-md px-2 py-1">
+                ✅
+              </button>
+              <button className="border border-gray-300 cursor-pointer rounded-md px-2 py-1">
+                ❌
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
