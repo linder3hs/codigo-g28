@@ -1,17 +1,30 @@
 import { useState } from "react";
 
 function App() {
+  // variables
   const [taskName, setTaskName] = useState("");
+  const [tasks, setTasks] = useState([]);
 
-  function handleInput(event) {
+  /**
+   function handleInput(event) {
     // console.log(event.target.value);
     setTaskName(event.target.value);
   }
+   */
+  const handleInput = (event) => {
+    setTaskName(event.target.value);
+  };
+
+  const handleFormSubmit = (event) => {
+    // evitar que se recargue la pagina
+    event.preventDefault();
+    console.log(taskName);
+  };
 
   return (
     <div className="h-screen bg-gray-100 px-6 py-8 space-y-10">
       <h1 className="text-center text-3xl font-bold">TodoList</h1>
-      <form>
+      <form onSubmit={handleFormSubmit}>
         <div className="bg-white p-5 rounded-lg flex">
           <input
             type="text"
