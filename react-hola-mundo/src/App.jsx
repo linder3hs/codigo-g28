@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { uuidv7 } from "uuidv7";
-import { CheckCircle, CheckCheck, Calendar, Trash } from "lucide-react";
+import {
+  CheckCircle,
+  CheckCheck,
+  Calendar,
+  Trash,
+  CalendarSync,
+} from "lucide-react";
 
 function App() {
   // variables
@@ -32,6 +38,12 @@ function App() {
     setTaskName("");
   };
 
+  const handleDelete = (id) => {
+    // crear un arreglo excluyendo la id (parametro)
+    const filteredTask = tasks.filter((task) => task.id !== id);
+    setTasks(filteredTask);
+  };
+
   return (
     <div className="h-screen bg-gray-100 px-6 py-8 space-y-10">
       <h1 className="text-center text-3xl font-bold">TodoList</h1>
@@ -61,12 +73,16 @@ function App() {
             <span className="text-xs italic flex items-center gap-2">
               <Calendar size={12} /> {task.createdAt}
             </span>
+            {/* comentario */}
             <p className="font-semibold capitalize text-lg">{task.text}</p>
             <div className="flex justify-end gap-5 mt-3">
               <button className="border border-gray-300 hover:border-green-500 cursor-pointer rounded-md px-2 py-1">
                 <CheckCheck color="green" size={16} />
               </button>
-              <button className="border border-gray-300 hover:border-red-500 cursor-pointer rounded-md px-2 py-1">
+              <button
+                onClick={() => handleDelete(task.id)}
+                className="border border-gray-300 hover:border-red-500 cursor-pointer rounded-md px-2 py-1"
+              >
                 <Trash color="red" size={16} />
               </button>
             </div>
