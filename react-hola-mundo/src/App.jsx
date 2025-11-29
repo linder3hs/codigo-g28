@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { uuidv7 } from "uuidv7";
+import { CheckCircle, CheckCheck, Calendar, Trash } from "lucide-react";
 
 function App() {
   // variables
@@ -47,7 +48,7 @@ function App() {
             type="submit"
             className="bg-gray-950 cursor-pointer text-white p-3 rounded-r border border-gray-950"
           >
-            Crear
+            <CheckCircle />
           </button>
         </div>
       </form>
@@ -57,14 +58,16 @@ function App() {
             key={task.id}
             className="bg-white px-3 py-5 space-y-2 rounded-md"
           >
-            <span className="text-xs italic block">{task.createdAt}</span>
+            <span className="text-xs italic flex items-center gap-2">
+              <Calendar size={12} /> {task.createdAt}
+            </span>
             <p className="font-semibold capitalize text-lg">{task.text}</p>
             <div className="flex justify-end gap-5 mt-3">
-              <button className="border border-gray-300 cursor-pointer rounded-md px-2 py-1">
-                ✅
+              <button className="border border-gray-300 hover:border-green-500 cursor-pointer rounded-md px-2 py-1">
+                <CheckCheck color="green" size={16} />
               </button>
-              <button className="border border-gray-300 cursor-pointer rounded-md px-2 py-1">
-                ❌
+              <button className="border border-gray-300 hover:border-red-500 cursor-pointer rounded-md px-2 py-1">
+                <Trash color="red" size={16} />
               </button>
             </div>
           </div>
