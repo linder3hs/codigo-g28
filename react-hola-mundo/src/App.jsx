@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { uuidv7 } from "uuidv7";
 
 function App() {
   // variables
@@ -18,7 +19,15 @@ function App() {
   const handleFormSubmit = (event) => {
     // evitar que se recargue la pagina
     event.preventDefault();
-    setTasks([...tasks, taskName]);
+    setTasks([
+      ...tasks,
+      {
+        id: uuidv7(),
+        text: taskName,
+        status: 1, // 1: Creado
+        createdAt: new Date().toDateString(),
+      },
+    ]);
     setTaskName("");
   };
 
@@ -43,10 +52,14 @@ function App() {
         </div>
       </form>
       <div className="space-y-5">
-        {tasks.map((task, index) => (
-          <div key={index} className="bg-white px-3 py-5 rounded-md">
-            <p className="font-semibold capitalize">{task}</p>
-            <div className="flex gap-5 mt-3">
+        {tasks.map((task) => (
+          <div
+            key={task.id}
+            className="bg-white px-3 py-5 space-y-2 rounded-md"
+          >
+            <span className="text-xs italic block">{task.createdAt}</span>
+            <p className="font-semibold capitalize text-lg">{task.text}</p>
+            <div className="flex justify-end gap-5 mt-3">
               <button className="border border-gray-300 cursor-pointer rounded-md px-2 py-1">
                 ✅
               </button>
