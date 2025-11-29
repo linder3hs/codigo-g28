@@ -1,3 +1,10 @@
+/**
+    props = {
+        text: "dasda",
+        type: "button",
+        variant: "primary"
+    }
+ */
 function Button(props) {
   const variants = {
     primary: "bg-gray-950 text-white",
