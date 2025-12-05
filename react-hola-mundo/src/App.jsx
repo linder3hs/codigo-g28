@@ -34,7 +34,7 @@ function App() {
     await getTasks();
   };
 
-  const handleDelete = async (task) => {
+  const handleModalDelete = (task) => {
     // crear un arreglo excluyendo la id (parametro)
     // const filteredTask = tasks.filter((task) => task.id !== id);
     // setTasks(filteredTask);
@@ -42,6 +42,15 @@ function App() {
     // await getTasks();
     setIsOpen(true);
     setCurrentTask(task);
+  };
+
+  const handleDelete = async () => {
+    // Eliminar
+    await deleteTaskFromAPI(currentTask?.id);
+    // Cerremos el modal
+    setIsOpen(false);
+    // Obtener la lista actualizada
+    await getTasks();
   };
 
   const getTasks = async () => {
@@ -89,7 +98,7 @@ function App() {
                 <CheckCheck color="green" size={16} />
               </button>
               <button
-                onClick={() => handleDelete(task)}
+                onClick={() => handleModalDelete(task)}
                 className="border border-gray-300 hover:border-red-500 cursor-pointer rounded-md px-2 py-1"
               >
                 <Trash color="red" size={16} />
@@ -102,7 +111,7 @@ function App() {
         title="Eliminar Tarea"
         open={isOpen}
         onClose={() => setIsOpen(false)}
-        // onConfirm={}
+        onConfirm={handleDelete}
       >
         {/* dentro de la etiqueta modal = children */}
         <div className="flex gap-2">
