@@ -1,12 +1,20 @@
 import { useState, useEffect } from "react";
 import { uuidv7 } from "uuidv7";
-import { CheckCircle, CheckCheck, Calendar, Trash } from "lucide-react";
-import { getTaskFromAPI, createTaskToAPI } from "./service";
+import Modal from "./components/Modal";
+import {
+  CheckCircle,
+  CheckCheck,
+  Calendar,
+  Trash,
+  TriangleAlert,
+} from "lucide-react";
+import { getTaskFromAPI, createTaskToAPI, deleteTaskFromAPI } from "./service";
 
 function App() {
   // variables
   const [taskName, setTaskName] = useState("");
   const [tasks, setTasks] = useState([]);
+  const [isOpen, setOpen] = useState(false);
 
   const handleInput = (event) => {
     setTaskName(event.target.value);
@@ -25,10 +33,13 @@ function App() {
     await getTasks();
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     // crear un arreglo excluyendo la id (parametro)
-    const filteredTask = tasks.filter((task) => task.id !== id);
-    setTasks(filteredTask);
+    // const filteredTask = tasks.filter((task) => task.id !== id);
+    // setTasks(filteredTask);
+    // await deleteTaskFromAPI(id);
+    // await getTasks();
+    setOpen(true);
   };
 
   const getTasks = async () => {
@@ -85,6 +96,16 @@ function App() {
           </div>
         ))}
       </div>
+      <Modal title="Eliminar Tarea" open={isOpen}>
+        {/* dentro de la etiqueta modal = children */}
+        <div className="flex gap-2">
+          <TriangleAlert className="text-yellow-600" />
+          <p>
+            Esta seguro de eliminar esta tarea?, es una{" "}
+            <strong className="text-red-500">acción irreversible</strong>
+          </p>
+        </div>
+      </Modal>
     </div>
   );
 }

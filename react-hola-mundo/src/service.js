@@ -22,3 +22,13 @@ export async function createTaskToAPI(task) {
   const data = await response.json();
   return data;
 }
+
+// Metodo: DELETE -> `BASE_URL/id`
+// id: es el identificador unico de cada tarea
+export async function deleteTaskFromAPI(id) {
+  const response = await fetch(`${BASE_URL}/${id}`, {
+    method: "DELETE",
+  });
+  const data = await response.json();
+  return data;
+}
