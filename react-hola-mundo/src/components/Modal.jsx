@@ -2,7 +2,7 @@ import { X } from "lucide-react";
 
 // props: objeto
 // destructuracion const {children, title, ...} = props
-function Modal({ children, title, open }) {
+function Modal({ children, title, open, onClose, onConfirm }) {
   return (
     <div
       className={`fixed inset-0 z-50 flex items-center justify-center ${
@@ -16,7 +16,10 @@ function Modal({ children, title, open }) {
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-300">
           <h3 className="text-xl font-semibold">{title}</h3>
-          <button className="cursor-pointer hover:border hover:rounded-full hover:border-red-400">
+          <button
+            onClick={onClose}
+            className="cursor-pointer hover:text-red-500"
+          >
             <X />
           </button>
         </div>
@@ -24,10 +27,16 @@ function Modal({ children, title, open }) {
         <div className="p-4">{children}</div>
         {/* Footer */}
         <div className="flex items-center justify-end gap-5 p-4 border-t border-gray-300">
-          <button className="bg-red-400 text-white cursor-pointer px-3 py-2 rounded-md">
+          <button
+            onClick={onClose}
+            className="bg-red-400 text-white cursor-pointer px-3 py-2 rounded-md"
+          >
             Cancelar
           </button>
-          <button className="bg-gray-950 text-white cursor-pointer px-3 py-2 rounded-md">
+          <button
+            onClick={onConfirm}
+            className="bg-gray-950 text-white cursor-pointer px-3 py-2 rounded-md"
+          >
             Confirmar
           </button>
         </div>

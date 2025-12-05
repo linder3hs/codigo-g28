@@ -14,7 +14,8 @@ function App() {
   // variables
   const [taskName, setTaskName] = useState("");
   const [tasks, setTasks] = useState([]);
-  const [isOpen, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentTask, setCurrentTask] = useState(null);
 
   const handleInput = (event) => {
     setTaskName(event.target.value);
@@ -33,13 +34,14 @@ function App() {
     await getTasks();
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (task) => {
     // crear un arreglo excluyendo la id (parametro)
     // const filteredTask = tasks.filter((task) => task.id !== id);
     // setTasks(filteredTask);
     // await deleteTaskFromAPI(id);
     // await getTasks();
-    setOpen(true);
+    setIsOpen(true);
+    setCurrentTask(task);
   };
 
   const getTasks = async () => {
@@ -87,7 +89,7 @@ function App() {
                 <CheckCheck color="green" size={16} />
               </button>
               <button
-                onClick={() => handleDelete(task.id)}
+                onClick={() => handleDelete(task)}
                 className="border border-gray-300 hover:border-red-500 cursor-pointer rounded-md px-2 py-1"
               >
                 <Trash color="red" size={16} />
@@ -96,12 +98,18 @@ function App() {
           </div>
         ))}
       </div>
-      <Modal title="Eliminar Tarea" open={isOpen}>
+      <Modal
+        title="Eliminar Tarea"
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        // onConfirm={}
+      >
         {/* dentro de la etiqueta modal = children */}
         <div className="flex gap-2">
           <TriangleAlert className="text-yellow-600" />
           <p>
-            Esta seguro de eliminar esta tarea?, es una{" "}
+            Esta seguro de eliminar esta tarea{" "}
+            <strong>{currentTask?.text}</strong>?, es una{" "}
             <strong className="text-red-500">acción irreversible</strong>
           </p>
         </div>
