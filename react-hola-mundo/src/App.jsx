@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { uuidv7 } from "uuidv7";
 import { CheckCircle, CheckCheck, Calendar, Trash } from "lucide-react";
+import { getTaskFromAPI, createTaskToAPI } from "./service";
 
 function App() {
   // variables
@@ -33,10 +34,8 @@ function App() {
   };
 
   const getTasks = async () => {
-    const url = "https://6932247011a8738467d19c36.mockapi.io/tasks";
-    const response = await fetch(url);
-    const data = await response.json();
-    console.log(data);
+    const data = await getTaskFromAPI();
+    setTasks(data);
   };
 
   useEffect(() => {
