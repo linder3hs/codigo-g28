@@ -1,24 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { uuidv7 } from "uuidv7";
-import {
-  CheckCircle,
-  CheckCheck,
-  Calendar,
-  Trash,
-  CalendarSync,
-} from "lucide-react";
+import { CheckCircle, CheckCheck, Calendar, Trash } from "lucide-react";
 
 function App() {
   // variables
   const [taskName, setTaskName] = useState("");
   const [tasks, setTasks] = useState([]);
 
-  /**
-   function handleInput(event) {
-    // console.log(event.target.value);
-    setTaskName(event.target.value);
-  }
-   */
   const handleInput = (event) => {
     setTaskName(event.target.value);
   };
@@ -43,6 +31,17 @@ function App() {
     const filteredTask = tasks.filter((task) => task.id !== id);
     setTasks(filteredTask);
   };
+
+  const getTasks = async () => {
+    const url = "https://6932247011a8738467d19c36.mockapi.io/tasks";
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data);
+  };
+
+  useEffect(() => {
+    getTasks();
+  }, []);
 
   return (
     <div className="h-screen bg-gray-100 px-6 py-8 space-y-10">
