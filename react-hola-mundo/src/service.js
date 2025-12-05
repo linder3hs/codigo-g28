@@ -15,6 +15,9 @@ export async function createTaskToAPI(task) {
     // OJO: Los objetos no puedes viajar usando fetch
     // debemos convertir ese objeto json a un json string
     body: JSON.stringify(task),
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
   const data = await response.json();
   return data;

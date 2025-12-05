@@ -12,19 +12,17 @@ function App() {
     setTaskName(event.target.value);
   };
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     // evitar que se recargue la pagina
     event.preventDefault();
-    setTasks([
-      ...tasks,
-      {
-        id: uuidv7(),
-        text: taskName,
-        status: 1, // 1: Creado
-        createdAt: new Date().toDateString(),
-      },
-    ]);
+    const newTask = {
+      id: uuidv7(),
+      text: taskName,
+      status: 1, // 1: Creado
+    };
+    await createTaskToAPI(newTask);
     setTaskName("");
+    await getTasks();
   };
 
   const handleDelete = (id) => {
