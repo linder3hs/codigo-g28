@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
-import { createTaskToAPI, deleteTaskFromAPI, getTaskFromAPI } from "../service";
+import {
+  createTaskToAPI,
+  deleteTaskFromAPI,
+  getTaskFromAPI,
+  updateTaskFromAPI,
+} from "../service";
 import useToogle from "./useToggle";
 
 function useAppLogic() {
@@ -50,11 +55,19 @@ function useAppLogic() {
     setCurrentTask(task);
   };
 
-  const handleUpdateSubmit = (event) => {
+  const handleUpdateSubmit = async (event) => {
     event.preventDefault();
+    // event.target = form
     const form = new FormData(event.target);
-    console.log(form.get("text"));
-    console.log(form.get("status"));
+
+    await updateTaskFromAPI(form.get("id"), {
+      text: form.get("text"),
+      status: Number(form.get("status")),
+    });
+
+    handleIsOpenUpdate();
+
+    await getTasks();
   };
 
   const handleDelete = async () => {

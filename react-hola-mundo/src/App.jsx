@@ -100,6 +100,7 @@ function App() {
         showFooter={false}
       >
         <form className="space-y-5" onSubmit={handleUpdateSubmit}>
+          <input type="hidden" name="id" defaultValue={currentTask?.id} />
           <div>
             <input
               type="text"
