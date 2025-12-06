@@ -52,6 +52,7 @@ function useAppLogic() {
 
   const handleModalUpdate = (task) => {
     handleIsOpenUpdate();
+    console.log(task);
     setCurrentTask(task);
   };
 
