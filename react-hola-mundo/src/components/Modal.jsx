@@ -2,7 +2,14 @@ import { X } from "lucide-react";
 
 // props: objeto
 // destructuracion const {children, title, ...} = props
-function Modal({ children, title, open, onClose, onConfirm }) {
+function Modal({
+  children,
+  title,
+  open,
+  showFooter = true,
+  onClose,
+  onConfirm,
+}) {
   return (
     <div
       className={`fixed inset-0 z-50 flex items-center justify-center ${
@@ -26,20 +33,22 @@ function Modal({ children, title, open, onClose, onConfirm }) {
         {/* Body */}
         <div className="p-4">{children}</div>
         {/* Footer */}
-        <div className="flex items-center justify-end gap-5 p-4 border-t border-gray-300">
-          <button
-            onClick={onClose}
-            className="bg-red-400 text-white cursor-pointer px-3 py-2 rounded-md"
-          >
-            Cancelar
-          </button>
-          <button
-            onClick={onConfirm}
-            className="bg-gray-950 text-white cursor-pointer px-3 py-2 rounded-md"
-          >
-            Confirmar
-          </button>
-        </div>
+        {showFooter && (
+          <div className="flex items-center justify-end gap-5 p-4 border-t border-gray-300">
+            <button
+              onClick={onClose}
+              className="bg-red-400 text-white cursor-pointer px-3 py-2 rounded-md"
+            >
+              Cancelar
+            </button>
+            <button
+              onClick={onConfirm}
+              className="bg-gray-950 text-white cursor-pointer px-3 py-2 rounded-md"
+            >
+              Confirmar
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

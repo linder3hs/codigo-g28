@@ -95,8 +95,36 @@ function App() {
         title="Actualizar tarea"
         open={isOpenUpdate}
         onClose={handleIsOpenUpdate}
+        showFooter={false}
       >
-        <p>Actualizar tarea:</p>
+        <form className="space-y-5">
+          <div>
+            <input
+              type="text"
+              placeholder="Nombre de la tarea"
+              className="w-full border border-gray-400 px-3 py-2 rounded flex-1 outline-none"
+            />
+          </div>
+          <div>
+            <select
+              name="status"
+              className="w-full border border-gray-400 px-3 py-2 rounded flex-1 outline-none"
+            >
+              <option disabled>Selecciona un estado</option>
+              <option value="1">Creado</option>
+              <option value="2">Bloqueado</option>
+              <option value="3">Finalizado</option>
+            </select>
+          </div>
+          <div>
+            <button
+              type="submit"
+              className="bg-gray-950 cursor-pointer text-white py-2 px-3 w-full rounded border border-gray-950"
+            >
+              Actualizar
+            </button>
+          </div>
+        </form>
       </Modal>
     </div>
   );
