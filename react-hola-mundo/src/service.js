@@ -23,6 +23,19 @@ export async function createTaskToAPI(task) {
   return data;
 }
 
+// Metodo: PUT -> `BASE_URL/id` (Actualizar)
+export async function updateTaskFromAPI(id, task) {
+  const response = await fetch(`${BASE_URL}/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(task),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await response.json();
+  return data;
+}
+
 // Metodo: DELETE -> `BASE_URL/id`
 // id: es el identificador unico de cada tarea
 export async function deleteTaskFromAPI(id) {
