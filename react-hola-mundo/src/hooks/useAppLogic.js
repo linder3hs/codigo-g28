@@ -1,13 +1,23 @@
 import { useState, useEffect } from "react";
-import { uuidv7 } from "uuidv7";
 import { createTaskToAPI, deleteTaskFromAPI, getTaskFromAPI } from "../service";
+import useToogle from "./useToggle";
 
 function useAppLogic() {
-  // variables
+  // Input
   const [taskName, setTaskName] = useState("");
+  // Lista de tareas
   const [tasks, setTasks] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
+
+  // Tarea seleccionada
   const [currentTask, setCurrentTask] = useState(null);
+
+  // Vamos a usar nuestro hook
+  const { isOpen: isOpenDelete, handleIsOpen: handleIsOpenDelete } =
+    useToogle();
+  // Para poder usar el hook mas de 1 vez a los nombres originales
+  // los cambiamos por alias
+  const { isOpen: isOpenUpdate, handleIsOpen: handleIsOpenUpdate } =
+    useToogle();
 
   const handleInput = (event) => {
     setTaskName(event.target.value);
@@ -17,7 +27,6 @@ function useAppLogic() {
     // evitar que se recargue la pagina
     event.preventDefault();
     const newTask = {
-      id: uuidv7(),
       text: taskName,
       status: 1, // 1: Creado
     };
@@ -32,17 +41,15 @@ function useAppLogic() {
     // setTasks(filteredTask);
     // await deleteTaskFromAPI(id);
     // await getTasks();
-    setIsOpen(true);
+    handleIsOpenDelete();
     setCurrentTask(task);
   };
-
-  const handleIsOpen = () => setIsOpen(!isOpen);
 
   const handleDelete = async () => {
     // Eliminar
     await deleteTaskFromAPI(currentTask?.id);
     // Cerremos el modal
-    setIsOpen(false);
+    handleIsOpenDelete();
     // Obtener la lista actualizada
     await getTasks();
   };
@@ -57,14 +64,16 @@ function useAppLogic() {
   }, []);
 
   return {
-    isOpen,
+    isOpenDelete,
+    isOpenUpdate,
     tasks,
     currentTask,
     taskName,
     handleDelete,
     handleFormSubmit,
     handleInput,
-    handleIsOpen,
+    handleIsOpenDelete,
+    handleIsOpenUpdate,
     handleModalDelete,
   };
 }

@@ -3,6 +3,7 @@ import {
   CheckCircle,
   CheckCheck,
   Calendar,
+  PencilIcon,
   Trash,
   TriangleAlert,
 } from "lucide-react";
@@ -12,12 +13,14 @@ function App() {
   const {
     tasks,
     currentTask,
-    isOpen,
+    isOpenDelete,
+    isOpenUpdate,
     taskName,
     handleDelete,
     handleFormSubmit,
     handleInput,
-    handleIsOpen,
+    handleIsOpenDelete,
+    handleIsOpenUpdate,
     handleModalDelete,
   } = useAppLogic();
 
@@ -53,6 +56,12 @@ function App() {
             {/* comentario */}
             <p className="font-semibold capitalize text-lg">{task.text}</p>
             <div className="flex justify-end gap-5 mt-3">
+              <button
+                onClick={handleIsOpenUpdate}
+                className="border border-gray-300 hover:border-sky-500 cursor-pointer rounded-md px-2 py-1"
+              >
+                <PencilIcon color="skyblue" size={16} />
+              </button>
               <button className="border border-gray-300 hover:border-green-500 cursor-pointer rounded-md px-2 py-1">
                 <CheckCheck color="green" size={16} />
               </button>
@@ -68,8 +77,8 @@ function App() {
       </div>
       <Modal
         title="Eliminar Tarea"
-        open={isOpen}
-        onClose={handleIsOpen}
+        open={isOpenDelete}
+        onClose={handleIsOpenDelete}
         onConfirm={handleDelete}
       >
         {/* dentro de la etiqueta modal = children */}
@@ -81,6 +90,13 @@ function App() {
             <strong className="text-red-500">acción irreversible</strong>
           </p>
         </div>
+      </Modal>
+      <Modal
+        title="Actualizar tarea"
+        open={isOpenUpdate}
+        onClose={handleIsOpenUpdate}
+      >
+        <p>Actualizar tarea:</p>
       </Modal>
     </div>
   );
