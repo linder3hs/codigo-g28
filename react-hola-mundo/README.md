@@ -1,16 +1,47 @@
-# React + Vite
+# React + Vite - Proyecto TodoList
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una aplicación de lista de tareas (TodoList) construida con React y Vite, que presenta una interfaz de usuario pulida y capacidades de gestión de tareas.
 
-Currently, two official plugins are available:
+## Estructura del Proyecto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+El proyecto sigue una estructura modular para asegurar la escalabilidad y el mantenimiento.
 
-## React Compiler
+```
+src/
+├── assets/          # Activos estáticos como imágenes y estilos globales
+├── components/      # Componentes reutilizables globales
+│   ├── ui/          # Componentes primitivos reutilizables (Botones, Inputs, Tarjetas)
+│   └── profile      # Componentes especificos del page
+├── hooks/           # Hooks personalizados de React para lógica de negocio
+├── service/         # Integración de API y comunicación con el backend
+├── utils/           # Funciones auxiliares (Formato de fechas, validación)
+├── App.jsx          # Componente principal de la aplicación
+└── main.jsx         # Punto de entrada de la aplicación
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Convenciones de Carpetas
 
-## Expanding the ESLint configuration
+- **`components/ui/`**: Este directorio está reservado para componentes "tontos" o primitivos que son altamente reutilizables y contienen poca o ninguna lógica de negocio. Ejemplos incluyen Botones, Campos de entrada, Tarjetas y Badges.
+- **`components/`**: Coloca aquí componentes más complejos y específicos del dominio. Estos pueden combinar múltiples componentes de UI o incluir lógica específica.
+- **`hooks/`**: Encapsula la lógica compleja y la gestión del estado en hooks personalizados para mantener los componentes limpios. Por ejemplo, `useAppLogic.js` maneja la funcionalidad principal del TodoList.
+- **`service/`**: Todas las llamadas a API externas deben definirse aquí, separando la obtención de datos del renderizado de la UI.
+- **`utils/`**: Funciones puras para tareas comunes como formatear fechas (`date.js`) o transformación de datos.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Empezando
+
+1.  **Instalar dependencias**:
+
+    ```bash
+    npm install
+    ```
+
+2.  **Ejecutar el servidor de desarrollo**:
+
+    ```bash
+    npm run dev
+    ```
+
+3.  **Construir para producción**:
+    ```bash
+    npm run build
+    ```
