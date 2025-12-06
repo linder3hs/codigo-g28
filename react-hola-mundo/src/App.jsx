@@ -22,6 +22,8 @@ function App() {
     handleIsOpenDelete,
     handleIsOpenUpdate,
     handleModalDelete,
+    handleModalUpdate,
+    handleUpdateSubmit,
   } = useAppLogic();
 
   return (
@@ -57,7 +59,7 @@ function App() {
             <p className="font-semibold capitalize text-lg">{task.text}</p>
             <div className="flex justify-end gap-5 mt-3">
               <button
-                onClick={handleIsOpenUpdate}
+                onClick={() => handleModalUpdate(task)}
                 className="border border-gray-300 hover:border-sky-500 cursor-pointer rounded-md px-2 py-1"
               >
                 <PencilIcon color="skyblue" size={16} />
@@ -97,11 +99,13 @@ function App() {
         onClose={handleIsOpenUpdate}
         showFooter={false}
       >
-        <form className="space-y-5">
+        <form className="space-y-5" onSubmit={handleUpdateSubmit}>
           <div>
             <input
               type="text"
               placeholder="Nombre de la tarea"
+              defaultValue={currentTask?.text}
+              name="text"
               className="w-full border border-gray-400 px-3 py-2 rounded flex-1 outline-none"
             />
           </div>

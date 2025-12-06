@@ -45,6 +45,18 @@ function useAppLogic() {
     setCurrentTask(task);
   };
 
+  const handleModalUpdate = (task) => {
+    handleIsOpenUpdate();
+    setCurrentTask(task);
+  };
+
+  const handleUpdateSubmit = (event) => {
+    event.preventDefault();
+    const form = new FormData(event.target);
+    console.log(form.get("text"));
+    console.log(form.get("status"));
+  };
+
   const handleDelete = async () => {
     // Eliminar
     await deleteTaskFromAPI(currentTask?.id);
@@ -75,6 +87,8 @@ function useAppLogic() {
     handleIsOpenDelete,
     handleIsOpenUpdate,
     handleModalDelete,
+    handleModalUpdate,
+    handleUpdateSubmit,
   };
 }
 
