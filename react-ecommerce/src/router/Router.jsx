@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router";
 import Home from "@/pages/Home/Home";
 import Login from "@/pages/Login/Login";
+import ProtectedRoute from "@/components/protected-route";
 
 // path = la URL del navegador
 // http://localhost:5173/ -> Raiz (Home)
@@ -10,7 +11,10 @@ function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* <Route path="*" element={<>Page Not Found</>} /> */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/" element={<Home />} />
+        </Route>
         <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
