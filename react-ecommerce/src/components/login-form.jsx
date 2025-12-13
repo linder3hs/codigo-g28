@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { validateLogin } from "@/lib/auth";
 
 export function LoginForm({ className, ...props }) {
   const [values, setValues] = useState({
@@ -31,9 +32,10 @@ export function LoginForm({ className, ...props }) {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(values);
+    const response = await validateLogin(values.email, values.password);
+    console.log(response);
   };
 
   return (

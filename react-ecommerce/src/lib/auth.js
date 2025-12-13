@@ -1,9 +1,8 @@
 import { getUsers } from "@/services/api";
-import { createHmac } from "node:crypto";
+import { sha256 } from "crypto-hash";
 
-function hashPassword(password) {
-  const secret = "codigog28";
-  return createHmac("sha256", secret).update(password).digest("hex");
+async function hashPassword(password) {
+  return await sha256(password);
 }
 
 export async function validateLogin(email, password) {
@@ -19,7 +18,9 @@ export async function validateLogin(email, password) {
     };
   }
   // 3: Verificar el password
-  if (hashPassword(password) !== user.password) {
+  const hashPwd = await hashPassword(password);
+
+  if (hashPwd !== user.password) {
     return {
       ok: false,
       message: "Error: Email y/o password incorrectos",
