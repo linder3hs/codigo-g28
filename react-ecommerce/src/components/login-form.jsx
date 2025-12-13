@@ -16,6 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { validateLogin } from "@/lib/auth";
+import { toast } from "sonner";
 
 export function LoginForm({ className, ...props }) {
   const [values, setValues] = useState({
@@ -35,7 +36,12 @@ export function LoginForm({ className, ...props }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const response = await validateLogin(values.email, values.password);
-    console.log(response);
+    if (!response.ok) {
+      toast.error(response.message);
+      return;
+    }
+
+    toast.success("Bienvenido!!");
   };
 
   return (
