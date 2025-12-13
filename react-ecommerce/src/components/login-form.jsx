@@ -17,8 +17,14 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { validateLogin } from "@/lib/auth";
 import { toast } from "sonner";
+import useUserStore from "@/stores/useStore";
+import { useNavigate } from "react-router";
 
 export function LoginForm({ className, ...props }) {
+  const setUser = useUserStore((state) => state.setUser);
+
+  const navigate = useNavigate();
+
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -40,7 +46,10 @@ export function LoginForm({ className, ...props }) {
       toast.error(response.message);
       return;
     }
+    setUser(response.user);
 
+    // redirect /
+    navigate("/");
     toast.success("Bienvenido!!");
   };
 

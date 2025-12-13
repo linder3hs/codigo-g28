@@ -8,9 +8,12 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { Separator } from "@/components/ui/separator";
 import { getProducts } from "@/services/api";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import useUserStore from "@/stores/useStore";
 
 function Home() {
   const [products, setProducts] = useState([]);
+
+  const { user } = useUserStore();
 
   const handleGetProducts = async () => {
     const data = await getProducts();
@@ -32,6 +35,9 @@ function Home() {
               orientation="vertical"
               className="mr-2 data-[orientation=vertical]:h-4"
             />
+            <p>
+              {user?.name} {user?.lastname}
+            </p>
           </header>
           <div className="flex flex-1 flex-col gap-4 p-4">
             <h1 className="text-2xl">Productos</h1>
