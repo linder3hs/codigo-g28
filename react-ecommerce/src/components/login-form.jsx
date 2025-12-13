@@ -14,8 +14,28 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { useState } from "react";
 
 export function LoginForm({ className, ...props }) {
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+
+    setValues({
+      ...values,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(values);
+  };
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -27,13 +47,16 @@ export function LoginForm({ className, ...props }) {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={handleSubmit}>
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
                 <Input
                   id="email"
                   type="email"
+                  value={values.email}
+                  name="email"
+                  onChange={handleInputChange}
                   placeholder="m@example.com"
                   required
                 />
@@ -42,7 +65,14 @@ export function LoginForm({ className, ...props }) {
                 <div className="flex items-center">
                   <FieldLabel htmlFor="password">Contraseña</FieldLabel>
                 </div>
-                <Input id="password" type="password" required />
+                <Input
+                  id="password"
+                  value={values.password}
+                  name="password"
+                  type="password"
+                  onChange={handleInputChange}
+                  required
+                />
               </Field>
               <Field>
                 <Button type="submit">Iniciar Sesión</Button>
