@@ -44,6 +44,10 @@ const useCartStore = create(
           0
         );
       },
+      validateItem: (productId) => {
+        const { items } = get();
+        return items.some((item) => item.id === productId);
+      },
     }),
     {
       name: "cart-storage",
