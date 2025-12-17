@@ -44,9 +44,9 @@ const useCartStore = create(
           0
         );
       },
-      validateItem: (productId) => {
+      getItem: (productId) => {
         const { items } = get();
-        return items.some((item) => item.id === productId);
+        return items.find((item) => item.id === productId);
       },
     }),
     {
