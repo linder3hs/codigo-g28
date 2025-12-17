@@ -71,6 +71,10 @@ const useCartStore = create(
           0
         );
       },
+      getTotalItem: () => {
+        const { items } = get();
+        return items.reduce((total, item) => total + item.quantity, 0);
+      },
       getItem: (productId) => {
         const { items } = get();
         return items.find((item) => item.id === productId);
