@@ -7,7 +7,6 @@ import {
 import { AppSidebar } from "@/components/app-sidebar";
 import { Separator } from "@/components/ui/separator";
 import { getProducts } from "@/services/api";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,6 +15,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Products from "@/components/products";
 import useUserStore from "@/stores/useStore";
 
 function Home() {
@@ -71,29 +71,7 @@ function Home() {
           </header>
           <div className="flex flex-1 flex-col gap-4 p-4">
             <h1 className="text-2xl">Productos</h1>
-            <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-              {products.length > 0 ? (
-                products.map((product) => (
-                  <Card className="cursor-pointer">
-                    <CardHeader className="flex justify-center items-center">
-                      <img src={product.image} width={200} alt="" />
-                    </CardHeader>
-                    <Separator />
-                    <CardContent className="space-y-3">
-                      <p className="uppercase font-semibold text-gray-500">
-                        {product.brand}
-                      </p>
-                      <h4 className="text-lg font-semibold">{product.name}</h4>
-                      <p className="text-gray-600 text-lg">
-                        S/ {product.price}
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))
-              ) : (
-                <p>No hay productos para mostrar.</p>
-              )}
-            </div>
+            <Products products={products} />
           </div>
         </SidebarInset>
       </SidebarProvider>
