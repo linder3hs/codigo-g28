@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { toast } from "sonner";
 
 const useCartStore = create(
   persist(
@@ -20,7 +21,7 @@ const useCartStore = create(
               ),
             };
           }
-
+          toast.success(`El producto ${product.name} fue agregado al carrito.`);
           // si no existe lo agregamos a la lista
           return {
             items: [...state.items, { ...product, quantity: 1 }],
@@ -34,6 +35,32 @@ const useCartStore = create(
         set((state) => ({
           items: state.items.map((item) =>
             item.id === productId ? { ...item, quantity } : item
+          ),
+        })),
+      addQuantity: (productId, stock) =>
+        set((state) => ({
+          items: state.items.map((item) => {
+            if (item.id == productId) {
+              const currentQuantity = item.quantity + 1;
+              if (currentQuantity > stock) {
+                toast.error("La cantidad solicitada supera al stock");
+                return item;
+              }
+              return {
+                ...item,
+                quantity: currentQuantity,
+              };
+            }
+
+            return item;
+          }),
+        })),
+      reduceQuantity: (productId) =>
+        set((state) => ({
+          items: state.items.map((item) =>
+            item.id === productId
+              ? { ...item, quantity: item.quantity - 1 }
+              : item
           ),
         })),
       getTotal: () => {
