@@ -14,7 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Link } from "react-router";
-import { ShoppingCart } from "lucide-react";
+import { Home, ShoppingCart } from "lucide-react";
 import useUserStore from "@/stores/useStore";
 import useCartStore from "@/stores/useCartStore";
 
@@ -29,7 +29,13 @@ function AppContent({ children, showFilter = true }) {
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center justify-between gap-2 border-b px-4">
           <div className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
-            <SidebarTrigger className="-ml-1" />
+            {showFilter ? (
+              <SidebarTrigger className="-ml-1" />
+            ) : (
+              <Link to={"/"}>
+                <Home />
+              </Link>
+            )}
             <Separator
               orientation="vertical"
               className="mr-2 data-[orientation=vertical]:h-4"
@@ -57,7 +63,7 @@ function AppContent({ children, showFilter = true }) {
                 <DropdownMenuItem>Subscription</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-            <Link to={"/cart"} className="block relative">
+            <Link to={"/summary"} className="block relative">
               <ShoppingCart />
               <span className="absolute -top-1 -right-1 w-4 h-4 text-center bg-red-500 text-white rounded-full text-xs">
                 {getTotalItem()}
