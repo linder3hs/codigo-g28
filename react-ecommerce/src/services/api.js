@@ -21,7 +21,7 @@ export async function getProducts() {
     if (!response.ok) {
       return {
         ok: false,
-        message: "Error al intentar obtener datos.",
+        message: "Error al intentar obtener los datos.",
       };
     }
 
@@ -36,7 +36,22 @@ export async function getProducts() {
 }
 
 export async function getUsers() {
-  const response = await fetch(`${BASE_URL}/users`);
-  const data = await response.json();
-  return data;
+  try {
+    const response = await fetch(`${BASE_URL}/users`);
+
+    if (!response.ok) {
+      return {
+        ok: false,
+        message: "Error al intentar obtener los datos.",
+      };
+    }
+
+    const data = await response.json();
+    return { ok: true, data };
+  } catch (error) {
+    return {
+      ok: false,
+      message: String(error),
+    };
+  }
 }

@@ -1,5 +1,6 @@
 import { getUsers } from "@/services/api";
 import { sha256 } from "crypto-hash";
+import { toast } from "sonner";
 
 async function hashPassword(password) {
   return await sha256(password);
@@ -7,7 +8,13 @@ async function hashPassword(password) {
 
 export async function validateLogin(email, password) {
   // 1: Traer a todos los usuarios
-  const users = await getUsers();
+  const { ok, message, data: users } = await getUsers();
+
+  if (!ok) {
+    toast.error(message);
+    return;
+  }
+
   // 2: Buscar el usuario por email
   const user = users.find((u) => u.email === email); // si no encuentra un email find retorna undefined
   // cuando el usuario no existe
