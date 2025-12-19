@@ -35,7 +35,7 @@ function SelectionQuantity({
   return (
     <div className="w-full flex items-center">
       <Button
-        className="flex-1"
+        className="flex-1 cursor-pointer"
         onClick={() => handleReduceQuantity(product.id, product.quantity)}
       >
         <Minus />
@@ -44,7 +44,7 @@ function SelectionQuantity({
         {product?.quantity}
       </span>
       <Button
-        className="flex-1"
+        className="flex-1 cursor-pointer"
         onClick={() => addQuantity(product.id, product.stock)}
       >
         <Plus />
