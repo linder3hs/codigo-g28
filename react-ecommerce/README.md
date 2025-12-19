@@ -420,6 +420,7 @@ import { useEffect, useState } from "react";
 
 // 2. Imports de servicios
 import { getProducts } from "@/services/api";
+import { toast } from "sonner";
 
 // 3. Imports de componentes
 import Products from "@/components/products";
@@ -431,25 +432,34 @@ function Home() {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // 6. Funciones de manejo de datos
-  const handleGetProducts = async () => {
-    try {
-      setIsLoading(true);
-      const data = await getProducts();
-      setProducts(data);
-    } catch (error) {
-      console.error("Error al obtener productos:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // 7. useEffect para carga inicial
+  // 6. useEffect para carga inicial
   useEffect(() => {
-    handleGetProducts();
-  }, []);
+    // IMPORTANTE: Definir la función async DENTRO del useEffect
+    // Esto evita warnings de ESLint y sigue las mejores prácticas de React
+    const handleGetProducts = async () => {
+      try {
+        setIsLoading(true);
+        const { ok, message, data } = await getProducts();
 
-  // 8. Return con estructura de la página
+        if (!ok) {
+          toast.error(message);
+          return;
+        }
+
+        setProducts(data);
+      } catch (error) {
+        console.error("Error al obtener productos:", error);
+        toast.error("Error inesperado al cargar productos");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    // Llamar a la función inmediatamente
+    handleGetProducts();
+  }, []); // Array vacío = solo se ejecuta al montar el componente
+
+  // 7. Return con estructura de la página
   return (
     <div>
       <AppContent>
@@ -460,17 +470,78 @@ function Home() {
   );
 }
 
-// 9. Export default
+// 8. Export default
 export default Home;
 ```
 
 #### Reglas Importantes
 
 - ✅ Las páginas deben estar en su propia carpeta
+- ✅ **Definir funciones async DENTRO del useEffect** para evitar warnings de ESLint
 - ✅ Manejar estados de carga y error
-- ✅ Usar try-catch para operaciones asíncronas
+- ✅ Usar try-catch-finally para operaciones asíncronas
+- ✅ Destructurar la respuesta de servicios: `{ ok, message, data }`
+- ✅ Mostrar notificaciones de error con `toast.error()`
 - ✅ Mantener la lógica de negocio en servicios/stores
 - ✅ Las páginas solo deben orquestar componentes
+
+#### ⚠️ Patrón Incorrecto vs Correcto
+
+**❌ INCORRECTO - Función async fuera del useEffect:**
+
+```jsx
+function Home() {
+  const [products, setProducts] = useState([]);
+
+  // ❌ Esto genera warning de ESLint
+  const handleGetProducts = async () => {
+    const data = await getProducts();
+    setProducts(data);
+  };
+
+  useEffect(() => {
+    handleGetProducts(); // ⚠️ Warning: set-state-in-effect
+  }, []);
+}
+```
+
+**✅ CORRECTO - Función async dentro del useEffect:**
+
+```jsx
+function Home() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    // ✅ Definir la función async aquí dentro
+    const handleGetProducts = async () => {
+      const data = await getProducts();
+      setProducts(data);
+    };
+
+    handleGetProducts(); // ✅ Sin warnings
+  }, []);
+}
+```
+
+**✅ ALTERNATIVA - Si necesitas reutilizar la función:**
+
+```jsx
+import { useCallback } from "react";
+
+function Home() {
+  const [products, setProducts] = useState([]);
+
+  // Si necesitas usar esta función en otros lugares (ej: botón de recarga)
+  const handleGetProducts = useCallback(async () => {
+    const data = await getProducts();
+    setProducts(data);
+  }, []);
+
+  useEffect(() => {
+    handleGetProducts();
+  }, [handleGetProducts]); // Incluir en dependencias
+}
+```
 
 ### 🔌 Services (`.js`)
 

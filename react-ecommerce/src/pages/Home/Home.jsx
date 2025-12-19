@@ -7,18 +7,20 @@ import { toast } from "sonner";
 function Home() {
   const [products, setProducts] = useState([]);
 
-  const handleGetProducts = async () => {
-    const { ok, message, data } = await getProducts();
-
-    if (!ok) {
-      toast.error(message);
-      return;
-    }
-
-    setProducts(data);
-  };
-
   useEffect(() => {
+    // Definir la función async dentro del useEffect
+    const handleGetProducts = async () => {
+      const { ok, message, data } = await getProducts();
+
+      if (!ok) {
+        toast.error(message);
+        return;
+      }
+
+      setProducts(data);
+    };
+
+    // Llamar a la función
     handleGetProducts();
   }, []);
 
