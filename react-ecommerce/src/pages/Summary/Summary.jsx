@@ -21,7 +21,7 @@ function Summary() {
         <div className="flex flex-col-reverse lg:flex-row mt-10 gap-10">
           <div className="space-y-5 lg:space-y-10 flex-6">
             {items?.map((item) => (
-              <Card>
+              <Card key={item.id}>
                 <CardContent className="flex flex-col lg:flex-row gap-5 lg:gap-10">
                   <img
                     className="block lg:inline mx-auto lg:mx-2"
