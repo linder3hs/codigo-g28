@@ -2,12 +2,19 @@ import { useEffect, useState } from "react";
 import { getProducts } from "@/services/api";
 import Products from "@/components/products";
 import AppContent from "@/components/app-content";
+import { toast } from "sonner";
 
 function Home() {
   const [products, setProducts] = useState([]);
 
   const handleGetProducts = async () => {
-    const data = await getProducts();
+    const { ok, message, data } = await getProducts();
+
+    if (!ok) {
+      toast.error(message);
+      return;
+    }
+
     setProducts(data);
   };
 

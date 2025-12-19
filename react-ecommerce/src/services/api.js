@@ -5,10 +5,34 @@
  */
 const BASE_URL = "https://693b88c69b80ba7262cd8e30.mockapi.io";
 
+/**
+ try {
+   ...codigo
+ } catch (error) {
+  // retornarmos un objeto con el error
+ }
+ */
+
 export async function getProducts() {
-  const response = await fetch(`${BASE_URL}/products`);
-  const data = await response.json();
-  return data;
+  try {
+    const response = await fetch(`${BASE_URL}/products`);
+
+    // Si response.ok es igual a false, quiere decir de que el endpoint(url) respondio un ERROR
+    if (!response.ok) {
+      return {
+        ok: false,
+        message: "Error al intentar obtener datos.",
+      };
+    }
+
+    const data = await response.json();
+    return { ok: true, data };
+  } catch (error) {
+    return {
+      ok: false,
+      message: String(error),
+    };
+  }
 }
 
 export async function getUsers() {
