@@ -4,7 +4,7 @@ import {
   deleteTaskFromAPI,
   getTaskFromAPI,
   updateTaskFromAPI,
-} from "../services/service";
+} from "../services/tasks";
 import useToogle from "./useToggle";
 
 function useAppLogic() {
@@ -31,11 +31,8 @@ function useAppLogic() {
   const handleFormSubmit = async (event) => {
     // evitar que se recargue la pagina
     event.preventDefault();
-    const newTask = {
-      text: taskName,
-      status: 1, // 1: Creado
-    };
-    await createTaskToAPI(newTask);
+
+    await createTaskToAPI({ titulo: taskName });
     setTaskName("");
     await getTasks();
   };
@@ -81,7 +78,7 @@ function useAppLogic() {
   };
 
   const getTasks = async () => {
-    const data = await getTaskFromAPI();
+    const { data } = await getTaskFromAPI();
     setTasks(data);
   };
 

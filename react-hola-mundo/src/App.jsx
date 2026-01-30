@@ -58,13 +58,13 @@ function App() {
           <div
             key={task.id}
             className={`${
-              bgStatus[task.status]
+              bgStatus[1]
             } p-5 rounded-lg transition-all duration-300 flex flex-col gap-3 group`}
           >
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-gray-500 flex items-center gap-1.5 capitalize">
                 <Calendar size={14} className="stroke-2" />
-                {formatDate(task.createdAt)}
+                {formatDate(task.fecha_creacion)}
               </span>
             </div>
 
@@ -75,7 +75,7 @@ function App() {
                   : "text-gray-800"
               }`}
             >
-              {task.text}
+              {task.titulo}
             </p>
 
             <div className="flex justify-end gap-2 mt-1 border-t border-black/5 pt-3">
