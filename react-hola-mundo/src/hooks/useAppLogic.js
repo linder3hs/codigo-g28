@@ -59,8 +59,8 @@ function useAppLogic() {
     const form = new FormData(event.target);
 
     await updateTaskFromAPI(form.get("id"), {
-      text: form.get("text"),
-      status: Number(form.get("status")),
+      titulo: form.get("text"),
+      completado: form.get("status") === "true",
     });
 
     handleIsOpenUpdate();

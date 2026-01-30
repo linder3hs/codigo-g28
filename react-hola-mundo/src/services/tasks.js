@@ -33,11 +33,12 @@ export async function createTaskToAPI(task) {
 
 // Metodo: PUT -> `BASE_URL/id` (Actualizar)
 export async function updateTaskFromAPI(id, task) {
-  const response = await fetch(`${BASE_URL}/${id}`, {
+  const response = await fetch(`${TASKS_URL}${id}`, {
     method: "PUT",
     body: JSON.stringify(task),
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
     },
   });
   const data = await response.json();
