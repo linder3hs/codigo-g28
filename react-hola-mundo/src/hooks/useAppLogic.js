@@ -4,7 +4,7 @@ import {
   deleteTaskFromAPI,
   getTaskFromAPI,
   updateTaskFromAPI,
-} from "../service";
+} from "../services/service";
 import useToogle from "./useToggle";
 
 function useAppLogic() {

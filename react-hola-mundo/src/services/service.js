@@ -1,4 +1,4 @@
-const BASE_URL = "https://6932247011a8738467d19c36.mockapi.io/tasks";
+const BASE_URL = "http://127.0.0.1:5000/api";
 
 // Metodo: GET (Defualt)
 export async function getTaskFromAPI() {
