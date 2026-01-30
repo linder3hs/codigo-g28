@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Mail, Lock, User, UserPlus, Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { registro } from "../services/auth";
@@ -6,6 +6,7 @@ import { registro } from "../services/auth";
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,7 +18,14 @@ function SignUp() {
       password: formData.get("password"),
     });
 
+    // Guardamos el access_token y el user en localStorage
+    localStorage.setItem("access_token", response.access_token);
+    localStorage.setItem("user", JSON.stringify(response.data));
+
     console.log(response);
+
+    // Redirigir a la aplicación de tareas
+    navigate("/app");
   };
 
   return (

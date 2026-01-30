@@ -1,11 +1,27 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Mail, Lock, LogIn } from "lucide-react";
+import { login } from "../services/auth";
 
 function Login() {
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí irá la lógica de autenticación
-    console.log("Login submit");
+    const formData = new FormData(e.target);
+
+    const response = await login({
+      email: formData.get("email"),
+      password: formData.get("password"),
+    });
+
+    // Guardamos el access_token y el user en localStorage
+    localStorage.setItem("access_token", response.access_token);
+    localStorage.setItem("user", JSON.stringify(response.data));
+
+    console.log(response);
+
+    // Redirigir a la aplicación de tareas
+    navigate("/app");
   };
 
   return (
@@ -35,6 +51,7 @@ function Login() {
               <div className="relative">
                 <input
                   type="email"
+                  name="email"
                   placeholder="tu@email.com"
                   className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 outline-none transition-all duration-300 bg-gray-50 focus:bg-white"
                   required
@@ -51,6 +68,7 @@ function Login() {
               <div className="relative">
                 <input
                   type="password"
+                  name="password"
                   placeholder="••••••••"
                   className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 outline-none transition-all duration-300 bg-gray-50 focus:bg-white"
                   required
