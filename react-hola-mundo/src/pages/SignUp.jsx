@@ -1,15 +1,23 @@
 import { Link } from "react-router-dom";
 import { Mail, Lock, User, UserPlus, Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
+import { registro } from "../services/auth";
 
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí irá la lógica de registro
-    console.log("SignUp submit");
+    const formData = new FormData(e.target);
+
+    const response = await registro({
+      nombre: formData.get("nombre"),
+      email: formData.get("email"),
+      password: formData.get("password"),
+    });
+
+    console.log(response);
   };
 
   return (
@@ -40,6 +48,7 @@ function SignUp() {
                 <input
                   type="text"
                   placeholder="Juan Pérez"
+                  name="nombre"
                   className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 outline-none transition-all duration-300 bg-gray-50 focus:bg-white"
                   required
                 />
@@ -56,6 +65,7 @@ function SignUp() {
                 <input
                   type="email"
                   placeholder="tu@email.com"
+                  name="email"
                   className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 outline-none transition-all duration-300 bg-gray-50 focus:bg-white"
                   required
                 />
@@ -72,6 +82,7 @@ function SignUp() {
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
+                  name="password"
                   className="w-full px-4 py-3 pr-12 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 outline-none transition-all duration-300 bg-gray-50 focus:bg-white"
                   required
                 />
