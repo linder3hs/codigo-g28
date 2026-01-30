@@ -63,7 +63,7 @@ function App() {
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-gray-500 flex items-center gap-1.5 capitalize">
                 <Calendar size={14} className="stroke-2" />
-                {formatDate(task.fecha_creacion)}
+                {formatDate(`${task.fecha_creacion}Z`)}
               </span>
             </div>
 

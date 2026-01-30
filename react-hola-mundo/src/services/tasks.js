@@ -6,7 +6,6 @@ const TASKS_URL = `${BASE_URL}${TASK_URL}/`;
 export async function getTaskFromAPI() {
   const response = await fetch(TASKS_URL, {
     headers: {
-      "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("access_token")}`,
     },
   });
@@ -48,8 +47,11 @@ export async function updateTaskFromAPI(id, task) {
 // Metodo: DELETE -> `BASE_URL/id`
 // id: es el identificador unico de cada tarea
 export async function deleteTaskFromAPI(id) {
-  const response = await fetch(`${BASE_URL}/${id}`, {
+  const response = await fetch(`${TASKS_URL}${id}`, {
     method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+    },
   });
   const data = await response.json();
   return data;
