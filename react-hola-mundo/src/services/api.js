@@ -12,3 +12,29 @@ export function validateAuthorization(response) {
   }
   return true;
 }
+
+export async function makeRequestWithAuthorization(requestObject) {
+  try {
+    const { url, method = "GET", body } = requestObject;
+    const fetchConfig = {
+      method,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        "Content-Type": "application/json",
+      },
+    };
+
+    if (body) {
+      fetchConfig.body = JSON.stringify(body);
+    }
+
+    const response = await fetch(url, fetchConfig);
+
+    if (!validateAuthorization(response)) return;
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
