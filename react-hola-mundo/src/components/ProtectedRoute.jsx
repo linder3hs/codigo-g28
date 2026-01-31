@@ -1,4 +1,4 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 
 /**
  * Componente que protege rutas verificando si existe un access_token
@@ -21,8 +21,9 @@ function ProtectedRoute({ children }) {
   // Si hay token, permitir acceso a la ruta protegida
   return (
     <>
-      <nav className="flex justify-end p-4">
-        <div className="flex items-center gap-3">
+      <nav className="flex justify-between items-center p-4 border-b border-gray-300 mb-5">
+        <Link to={"/app"}>Inicio</Link>
+        <Link to={"/profile"} className="flex items-center gap-3">
           <div className="w-10 h-10 flex text-lg font-bold justify-center items-center rounded-full bg-blue-300">
             {firstLetter}
           </div>
@@ -30,7 +31,7 @@ function ProtectedRoute({ children }) {
             <p className="text-sm">{userParse.nombre}</p>
             <p className="text-xs">{userParse.email}</p>
           </div>
-        </div>
+        </Link>
       </nav>
       {children}
     </>
