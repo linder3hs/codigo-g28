@@ -1,9 +1,26 @@
 import { useNavigate } from "react-router-dom";
+import { cambiarPassword } from "../services/auth";
 
 function Profile() {
   const user = JSON.parse(localStorage.getItem("user"));
 
   const navigate = useNavigate();
+
+  const handleChangePassword = async (event) => {
+    event.preventDefault();
+    // event.target = formulario
+    const form = new FormData(event.target);
+
+    const body = {
+      password_actual: form.get("password_actual"),
+      password_nuevo: form.get("password_nuevo"),
+      password_confirmacion: form.get("password_confirmacion"),
+    };
+
+    const response = await cambiarPassword(body);
+
+    alert(response.message);
+  };
 
   const handleLogout = () => {
     localStorage.clear();
@@ -51,7 +68,10 @@ function Profile() {
             Actualizar Contraseña
           </h2>
           <div className="mt-5 bg-white rounded-md shadow-md">
-            <form className="px-6 py-4 space-y-5">
+            <form
+              className="px-6 py-4 space-y-5"
+              onSubmit={handleChangePassword}
+            >
               <div className="flex flex-col gap-1">
                 <label htmlFor="">Password Actual</label>
                 <input
