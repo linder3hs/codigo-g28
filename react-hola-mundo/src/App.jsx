@@ -33,9 +33,9 @@ function App() {
   };
 
   return (
-    <div className="h-screen bg-gray-100 px-6 py-8 space-y-10">
+    <div className="h-screen bg-gray-100 px-6 py-8 space-y-10 ">
       <h1 className="text-center text-3xl font-bold">TodoList</h1>
-      <form onSubmit={handleFormSubmit}>
+      <form onSubmit={handleFormSubmit} className="max-w-lg mx-auto">
         <div className="bg-white p-5 rounded-lg flex">
           <input
             type="text"
@@ -52,7 +52,7 @@ function App() {
           </button>
         </div>
       </form>
-      <div className="space-y-4">
+      <div className="space-y-4 max-w-lg mx-auto">
         {tasks.map((task) => (
           <div
             key={task.id}

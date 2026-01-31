@@ -7,14 +7,34 @@ import { Navigate } from "react-router-dom";
  */
 function ProtectedRoute({ children }) {
   const accessToken = localStorage.getItem("access_token");
+  const user = localStorage.getItem("user"); // null o string
 
   // Si no hay token, redirigir al login
   if (!accessToken) {
     return <Navigate to="/login" replace />;
   }
 
+  const userParse = JSON.parse(user);
+
+  const firstLetter = userParse.nombre.substring(0, 1);
+
   // Si hay token, permitir acceso a la ruta protegida
-  return children;
+  return (
+    <>
+      <nav className="flex justify-end p-4">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 flex text-lg font-bold justify-center items-center rounded-full bg-blue-300">
+            {firstLetter}
+          </div>
+          <div>
+            <p className="text-sm">{userParse.nombre}</p>
+            <p className="text-xs">{userParse.email}</p>
+          </div>
+        </div>
+      </nav>
+      {children}
+    </>
+  );
 }
 
 export default ProtectedRoute;
