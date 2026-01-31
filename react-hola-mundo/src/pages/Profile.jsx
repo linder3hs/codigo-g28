@@ -1,5 +1,14 @@
+import { useNavigate } from "react-router-dom";
+
 function Profile() {
   const user = JSON.parse(localStorage.getItem("user"));
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login", { replace: true });
+  };
 
   return (
     <div className="h-screen bg-gray-100">
@@ -27,7 +36,10 @@ function Profile() {
                 />
               </div>
               <div className="text-center">
-                <button className="bg-red-400 text-white px-3 py-2 rounded-md cursor-pointer">
+                <button
+                  onClick={handleLogout}
+                  className="bg-red-400 text-white px-3 py-2 rounded-md cursor-pointer"
+                >
                   Cerrar Sesión
                 </button>
               </div>

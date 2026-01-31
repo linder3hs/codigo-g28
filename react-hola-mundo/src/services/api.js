@@ -7,6 +7,7 @@ export function validateAuthorization(response) {
   if (response.status === 401) {
     // limpiar localStorage
     localStorage.clear();
+    window.location.href = "/login";
     return false;
   }
   return true;
