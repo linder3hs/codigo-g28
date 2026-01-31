@@ -1,4 +1,4 @@
-import { BASE_URL, TASK_URL } from "./api";
+import { BASE_URL, TASK_URL, validateAuthorization } from "./api";
 
 const TASKS_URL = `${BASE_URL}${TASK_URL}/`;
 
@@ -9,6 +9,9 @@ export async function getTaskFromAPI() {
       Authorization: `Bearer ${localStorage.getItem("access_token")}`,
     },
   });
+
+  if (!validateAuthorization(response)) return;
+
   const data = await response.json();
   return data;
 }
@@ -26,6 +29,9 @@ export async function createTaskToAPI(task) {
       Authorization: `Bearer ${localStorage.getItem("access_token")}`,
     },
   });
+
+  if (!validateAuthorization(response)) return;
+
   const data = await response.json();
   return data;
 }
@@ -40,6 +46,9 @@ export async function updateTaskFromAPI(id, task) {
       Authorization: `Bearer ${localStorage.getItem("access_token")}`,
     },
   });
+
+  if (!validateAuthorization(response)) return;
+
   const data = await response.json();
   return data;
 }
@@ -53,6 +62,9 @@ export async function deleteTaskFromAPI(id) {
       Authorization: `Bearer ${localStorage.getItem("access_token")}`,
     },
   });
+
+  if (!validateAuthorization(response)) return;
+
   const data = await response.json();
   return data;
 }
