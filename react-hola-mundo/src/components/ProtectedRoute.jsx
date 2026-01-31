@@ -21,7 +21,7 @@ function ProtectedRoute({ children }) {
   // Si hay token, permitir acceso a la ruta protegida
   return (
     <>
-      <nav className="flex justify-between items-center p-4 border-b border-gray-300 mb-5">
+      <nav className="flex justify-between items-center py-5 px-10 border-b border-gray-300">
         <Link to={"/app"}>Inicio</Link>
         <Link to={"/profile"} className="flex items-center gap-3">
           <div className="w-10 h-10 flex text-lg font-bold justify-center items-center rounded-full bg-blue-300">
